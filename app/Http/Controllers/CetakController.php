@@ -321,7 +321,7 @@ class CetakController extends Controller
             }
             ($value['tmt_pangkat'] === null || empty($value['tmt_pangkat']) || $value['tmt_pangkat'] === "") ?
                 $value['tmt_pangkat'] = "-" :
-                    $value['tmt_pangkat'] = date('d-m-Y',strtotime($value['tmt_pangkat']));
+                    $value['tmt_pangkat'] = $this->tanggalIndo(date('d',strtotime($value['tmt_pangkat'])), date('m',strtotime($value['tmt_pangkat'])), date('Y',strtotime($value['tmt_pangkat'])));
         }
         return $datasetsRiwPangkat;
     }
@@ -340,7 +340,7 @@ class CetakController extends Controller
             }
             ($value['tmt_jab'] === null || empty($value['tmt_jab']) || $value['tmt_jab'] === "") ?
                 $value['tmt_jab'] = "-" :
-                    $value['tmt_jab'] = date('d-m-Y',strtotime($value['tmt_jab']));
+                    $value['tmt_jab'] = $this->tanggalIndo(date('d',strtotime($value['tmt_jab'])), date('m',strtotime($value['tmt_jab'])), date('Y',strtotime($value['tmt_jab'])));
         }
         return $datasetsRiwJabatan;
     }
@@ -450,6 +450,8 @@ class CetakController extends Controller
             }
             if ($value['tanggal_lahir'] === null || empty($value['tanggal_lahir']) || $value['tanggal_lahir'] === "") {
                 $value['tanggal_lahir'] = null;
+            } else {
+                $value['tanggal_lahir'] = $this->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir'])));
             }
             if ($value['kota_lahir'] === null && $value['tanggal_lahir'] != null) {
                 $value['lahir'] = $value['tanggal_lahir'];
@@ -458,7 +460,7 @@ class CetakController extends Controller
                 $value['lahir'] = $value['kota_lahir'];
             }
             ($value['tanggal_lahir'] != null && $value['kota_lahir'] != null) ?
-                $value['lahir'] = $value['kota_lahir'].", ".date('d-m-Y',strtotime($value['tanggal_lahir'])):
+                $value['lahir'] = $value['kota_lahir'].", ".$this->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir']))) :
                     $value['lahir'] = "-" ;
             if ($value['keterangan_pekerjaan'] === null || empty($value['keterangan_pekerjaan']) || $value['keterangan_pekerjaan'] === "") {
                 $value['keterangan_pekerjaan'] = "-";

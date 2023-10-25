@@ -212,11 +212,11 @@
                 <table class="darkTable">
                     <thead>
                         <tr>
-                            <th>NO</th>
+                            <th style="width:5%;">NO</th>
                             <th>JABATAN</th>
                             <th>SATUAN KERJA</th>
                             <th>UNIT KERJA</th>
-                            <th>TMT JABATAN</th>
+                            <th style="width:18%;">TMT JABATAN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -546,7 +546,7 @@
                                 <td>{{$no+1}}</td>
                                 <td>{{$datasetsAnak->nama_keluarga}}</td>
                                 <td>{{$datasetsAnak->kelamin}}</td>
-                                <td>{{$datasetsAnak->lahir}}</td>
+                                <td>{{$datasetsAnak->kota_lahir}}<br />{{$datasetsAnak->tanggal_lahir}}</td>
                                 <td>{{$datasetsAnak->keterangan_pekerjaan}}</td>
                                 <td>{{$datasetsAnak->hubungan}}</td>
                             </tr>
