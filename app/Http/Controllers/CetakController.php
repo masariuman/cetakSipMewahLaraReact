@@ -488,7 +488,7 @@ class CetakController extends Controller
     }
 
     function penandatangan() {
-        $masterjab = MasterJabatan::where('id_satker', '0419000000')->where('id_unker','0419000000')->where('is_delete',0)->first();
+        $masterjab = MasterJabatan::where('id_satker', '0419000000')->where('id_unker','0419000000')->first();
         $penandatangan = Pegawai::where('nip',$masterjab['nip_defenitif'])->first();
         $namaPenandatangan = $penandatangan['nama'];
         if ($penandatangan['gelar_depan'] != null || !empty($penandatangan['gelar_depan']) || $penandatangan['gelar_depan'] != "") {
