@@ -98,12 +98,17 @@
                 </thead>
             </table>
             <h2 class="text-center">KETERANGAN PERORANGAN</h2>
-            <table>
+            <table style="width:100%;">
                 <tbody>
                     <tr style="width:100%;">
                         <td valign="top" style="width:26%;">NIP</td>
                         <td valign="top" style="width:2%;">:</td>
                         <td valign="top"><b>{{$datasetPegawai['nip']}}</b></td>
+                        @if($foto_pegawai != null)
+                            <td valign="top" rowspan="10" style="width:150px;"><img  style="width:150px;" src={{$foto_pegawai}} /></td>
+                        @else
+                            <td valign="top" rowspan="10" style="width:150px;"><img  style="width:150px;" src="noPhotoGreen.png" /></td>
+                        @endif
                     </tr>
                     <tr>
                         <td valign="top">Nama</td>
