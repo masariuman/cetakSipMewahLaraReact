@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SIASNController;
+use App\Http\Controllers\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\MasterJabatan;
@@ -28,16 +30,24 @@ use App\Models\RefWilKel;
 use App\Models\RefWilKab;
 use App\Models\RefWilProv;
 use App\Models\RefStatusPegawai;
-use App\Models\TokenSiasn;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class CetakController extends Controller
 {
+    private $siasn;
+    private $helper;
+
+    public function __construct()
+    {
+        $this->siasn = new SIASNController;
+        $this->helper = new Helper;
+    }
+
     public function biodata($nip)
     {
-        $this->get_api_ws();
-        $this->get_bkn_sso();
+        $this->siasn->get_api_ws();
+        $this->siasn->get_bkn_sso();
 
         $datasetPegawai                 = $this->pegawai($nip);
         $datasetsRiwPangkat             = $this->riwPangkat($nip);
@@ -55,8 +65,8 @@ class CetakController extends Controller
         $datasetsPasangan               = $this->riwKeluarga($nip,['11','12','13','21','22','23']);
         $datasetsAnak                   = $this->riwKeluarga($nip,['31','32','33']);
         $penandatangan                  = $this->penandatangan();
-        $today                          = $this->today();
-        $foto_pegawai                   = $this->foto_pegawai($nip);
+        $today                          = $this->helper->today();
+        $foto_pegawai                   = $this->siasn->foto_pegawai($nip);
 
         !isset($datasetPegawai) ? $datasetPegawai = null : $datasetPegawai;
         !isset($datasetsRiwPangkat[0]) ? $datasetsRiwPangkat = null : $datasetsRiwPangkat;
@@ -146,7 +156,7 @@ class CetakController extends Controller
             $pegawai['lahir'] = strtolower($pegawai['kota_lahir']);
         }
         ($pegawai['tanggal_lahir'] != null && $pegawai['kota_lahir'] != null) ?
-            $pegawai['lahir'] = strtolower($pegawai['kota_lahir']).", ".$this->tanggalIndo(date('d',strtotime($pegawai['tanggal_lahir'])), date('m',strtotime($pegawai['tanggal_lahir'])), date('Y',strtotime($pegawai['tanggal_lahir']))) :
+            $pegawai['lahir'] = strtolower($pegawai['kota_lahir']).", ".$this->helper->tanggalIndo(date('d',strtotime($pegawai['tanggal_lahir'])), date('m',strtotime($pegawai['tanggal_lahir'])), date('Y',strtotime($pegawai['tanggal_lahir']))) :
                 $pegawai['lahir'] = "-" ;
         if ($pegawai['kode_agama'] != null || !empty($pegawai['kode_agama']) || $pegawai['kode_agama'] != "") {
             foreach ($ref_agama as $refAgama) {
@@ -258,7 +268,7 @@ class CetakController extends Controller
         }
         ($datasetPangkat['tmt_pangkat'] === null || empty($datasetPangkat['tmt_pangkat']) || $datasetPangkat['tmt_pangkat'] === "") ?
             $datasetPangkat['tmt_pangkat'] = "-" :
-                $datasetPangkat['tmt_pangkat'] = $this->tanggalIndo(date('d',strtotime($datasetPangkat['tmt_pangkat'])), date('m',strtotime($datasetPangkat['tmt_pangkat'])), date('Y',strtotime($datasetPangkat['tmt_pangkat'])));
+                $datasetPangkat['tmt_pangkat'] = $this->helper->tanggalIndo(date('d',strtotime($datasetPangkat['tmt_pangkat'])), date('m',strtotime($datasetPangkat['tmt_pangkat'])), date('Y',strtotime($datasetPangkat['tmt_pangkat'])));
         $pangkatAkhir = strtolower($datasetPangkat['namaPangkat']).' ('.$datasetPangkat['namaGolRuang'].')';
         $pangkatTMTAkhir = 'TMT. '.$datasetPangkat['tmt_pangkat'];
         $datasetJabatan = RiwJabatan::where('nip',$pegawai['nip'])->where('is_deleted', 0)->orderBy('tmt_jab','DESC')->first();
@@ -273,7 +283,7 @@ class CetakController extends Controller
         }
         ($datasetJabatan['tmt_jab'] === null || empty($datasetJabatan['tmt_jab']) || $datasetJabatan['tmt_jab'] === "") ?
             $datasetJabatan['tmt_jab'] = "-" :
-                $datasetJabatan['tmt_jab'] = $this->tanggalIndo(date('d',strtotime($datasetJabatan['tmt_jab'])), date('m',strtotime($datasetJabatan['tmt_jab'])), date('Y',strtotime($datasetJabatan['tmt_jab'])));
+                $datasetJabatan['tmt_jab'] = $this->helper->tanggalIndo(date('d',strtotime($datasetJabatan['tmt_jab'])), date('m',strtotime($datasetJabatan['tmt_jab'])), date('Y',strtotime($datasetJabatan['tmt_jab'])));
         $jabatanTMTAkhir = 'TMT. '.$datasetJabatan['tmt_jab'];
         $jabatanSatkerAkhir = strtolower($datasetJabatan['nama_satuan_kerja']);
         $jabatanUnorAkhir = strtolower($datasetJabatan['nama_unit_kerja']);
@@ -328,7 +338,7 @@ class CetakController extends Controller
             }
             ($value['tmt_pangkat'] === null || empty($value['tmt_pangkat']) || $value['tmt_pangkat'] === "") ?
                 $value['tmt_pangkat'] = "-" :
-                    $value['tmt_pangkat'] = $this->tanggalIndo(date('d',strtotime($value['tmt_pangkat'])), date('m',strtotime($value['tmt_pangkat'])), date('Y',strtotime($value['tmt_pangkat'])));
+                    $value['tmt_pangkat'] = $this->helper->tanggalIndo(date('d',strtotime($value['tmt_pangkat'])), date('m',strtotime($value['tmt_pangkat'])), date('Y',strtotime($value['tmt_pangkat'])));
         }
         return $datasetsRiwPangkat;
     }
@@ -347,7 +357,7 @@ class CetakController extends Controller
             }
             ($value['tmt_jab'] === null || empty($value['tmt_jab']) || $value['tmt_jab'] === "") ?
                 $value['tmt_jab'] = "-" :
-                    $value['tmt_jab'] = $this->tanggalIndo(date('d',strtotime($value['tmt_jab'])), date('m',strtotime($value['tmt_jab'])), date('Y',strtotime($value['tmt_jab'])));
+                    $value['tmt_jab'] = $this->helper->tanggalIndo(date('d',strtotime($value['tmt_jab'])), date('m',strtotime($value['tmt_jab'])), date('Y',strtotime($value['tmt_jab'])));
         }
         return $datasetsRiwJabatan;
     }
@@ -458,7 +468,7 @@ class CetakController extends Controller
             if ($value['tanggal_lahir'] === null || empty($value['tanggal_lahir']) || $value['tanggal_lahir'] === "") {
                 $value['tanggal_lahir'] = null;
             } else {
-                $value['tanggal_lahir'] = $this->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir'])));
+                $value['tanggal_lahir'] = $this->helper->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir'])));
             }
             if ($value['kota_lahir'] === null && $value['tanggal_lahir'] != null) {
                 $value['lahir'] = $value['tanggal_lahir'];
@@ -467,7 +477,7 @@ class CetakController extends Controller
                 $value['lahir'] = $value['kota_lahir'];
             }
             ($value['tanggal_lahir'] != null && $value['kota_lahir'] != null) ?
-                $value['lahir'] = $value['kota_lahir'].", ".$this->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir']))) :
+                $value['lahir'] = $value['kota_lahir'].", ".$this->helper->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir']))) :
                     $value['lahir'] = "-" ;
             if ($value['keterangan_pekerjaan'] === null || empty($value['keterangan_pekerjaan']) || $value['keterangan_pekerjaan'] === "") {
                 $value['keterangan_pekerjaan'] = "-";
@@ -515,253 +525,6 @@ class CetakController extends Controller
         $identitasPenandatangan['namaPenandatangan'] = $namaPenandatangan;
         $identitasPenandatangan['namaPangkat'] = strtolower($pangkat['nama_pangkat']);
         return $identitasPenandatangan;
-    }
-
-    function today() {
-        $date = date('d');
-        $month = date('m');
-        $year = date('Y');
-        ($month === '1' || $month === '01' || $month === 1) ? $month = 'Januari' :
-          (($month === '2' || $month === '02' || $month === 2) ? $month = 'Februari' :
-            (($month === '3' || $month === '03' || $month === 3) ? $month = 'Maret' :
-              (($month === '4' || $month === '04' || $month === 4) ? $month = 'April' :
-                (($month === '5' || $month === '05' || $month === 5) ? $month = 'Mei' :
-                  (($month === '6' || $month === '06' || $month === 6) ? $month = 'Juni' :
-                    (($month === '7' || $month === '07' || $month === 7) ? $month = 'Juli' :
-                      (($month === '8' || $month === '08' || $month === 8) ? $month = 'Agustus' :
-                        (($month === '9' || $month === '09' || $month === 9) ? $month = 'September' :
-                          (($month === '10' || $month === '10' || $month === 10) ? $month = 'Oktober' :
-                            (($month === '11' || $month === '11' || $month === 11) ? $month = 'November' :
-                              (($month === '12' || $month === '12' || $month === 12) ? $month = 'Desember' :
-                                $month)))))))))));
-        $today = $date.' '.$month.' '.$year;
-        return $today;
-    }
-
-    function tanggalIndo($date, $month, $year) {
-        ($month === '1' || $month === '01' || $month === 1) ? $month = 'Januari' :
-          (($month === '2' || $month === '02' || $month === 2) ? $month = 'Februari' :
-            (($month === '3' || $month === '03' || $month === 3) ? $month = 'Maret' :
-              (($month === '4' || $month === '04' || $month === 4) ? $month = 'April' :
-                (($month === '5' || $month === '05' || $month === 5) ? $month = 'Mei' :
-                  (($month === '6' || $month === '06' || $month === 6) ? $month = 'Juni' :
-                    (($month === '7' || $month === '07' || $month === 7) ? $month = 'Juli' :
-                      (($month === '8' || $month === '08' || $month === 8) ? $month = 'Agustus' :
-                        (($month === '9' || $month === '09' || $month === 9) ? $month = 'September' :
-                          (($month === '10' || $month === '10' || $month === 10) ? $month = 'Oktober' :
-                            (($month === '11' || $month === '11' || $month === 11) ? $month = 'November' :
-                              (($month === '12' || $month === '12' || $month === 12) ? $month = 'Desember' :
-                                $month)))))))))));
-        $tanggalIndo = $date.' '.$month.' '.$year;
-        return $tanggalIndo;
-    }
-
-    public function dataUtama($nip)
-    {
-        $tokenSiasn = TokenSiasn::first();
-        $authHeader = 'bearer '.$tokenSiasn['bkn_sso'];
-        $authorizationHeader = 'Bearer '.$tokenSiasn['api_ws'];
-
-        $nip = trim($nip);
-        $authHeader = trim($authHeader);
-        $authorizationHeader = trim($authorizationHeader);
-
-        if (!preg_match('/^\d{18}$/', $nip)) {
-            // Handle invalid NIP format, e.g., return an error response or redirect to an error page
-            return;
-        }
-
-        // Set the API URL with the dynamic NIP parameter
-        $api_url = 'https://apimws.bkn.go.id:8243/apisiasn/1.0/pns/data-utama/' . $nip;
-
-        // Set headers for the request
-        $headers = array(
-            'accept: application/json',
-            'Auth: ' . $authHeader,
-            'Authorization: ' . $authorizationHeader,
-            // Add any other headers if necessary
-        );
-
-        // Initialize cURL session
-        $curl = curl_init();
-
-        // Set cURL options
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $api_url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => $headers,
-        ));
-
-        // Execute the cURL request
-        $response = curl_exec($curl);
-
-        // Close cURL session
-        curl_close($curl);
-
-        if (!$response) {
-            // Handle API request failure, e.g., return an error response or redirect to an error page
-            return;
-        }
-
-        // Parse the JSON response
-        $data = json_decode($response);
-        return $data->data;
-    }
-
-    function foto_pegawai($nip){
-        $pegawai = $this->dataUtama($nip);
-        $pegawai_id = $pegawai->id;
-
-        $tokenSiasn = TokenSiasn::first();
-        $authHeader = 'bearer '.$tokenSiasn['bkn_sso'];
-        $authorizationHeader = 'Bearer '.$tokenSiasn['api_ws'];
-        $nip = trim($nip);
-        $authHeader = trim($authHeader);
-        $authorizationHeader = trim($authorizationHeader);
-        if (!preg_match('/^\d{18}$/', $nip)) {
-            // Handle invalid NIP format, e.g., return an error response or redirect to an error page
-            echo "error";
-            return;
-        }
-
-        // Set the API URL with the dynamic NIP parameter
-        $api_url = 'https://apimws.bkn.go.id:8243/apisiasn/1.0/pns/photo/' . $pegawai_id;
-
-        // Set headers for the request
-        $headers = array(
-            'accept: application/json',
-            'Auth: ' . $authHeader,
-            'Authorization: ' . $authorizationHeader,
-            // Add any other headers if necessary
-        );
-
-        // Initialize cURL session
-        $curl = curl_init();
-
-        // Set cURL options
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $api_url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => $headers,
-        ));
-
-        // Execute the cURL request
-        $response = curl_exec($curl);
-        return $response;
-        // $foto_pegawai = "<img src='data:image/jpeg;base64,".base64_encode($response)."' />";
-        // return $foto_pegawai;
-    }
-
-    function get_api_ws(){
-        // $this->output->unset_template();
-        $url = 'https://apimws.bkn.go.id/oauth2/token';
-        $username = '3WiZKeK6X1q9SgdvD6rcmIML19Ma';
-        $password = '9PNb0K__4nrmdgqYLMdzGoIg6lMa';
-
-        // Create Basic Authentication header
-        $authHeader = base64_encode($username . ':' . $password);
-
-        // Set the POST data for the request
-        $data = array(
-            'grant_type' => 'client_credentials'
-        );
-
-        // Build URL-encoded query string for the POST data
-        $queryString = http_build_query($data);
-
-        // Initialize cURL session
-        $curl = curl_init();
-
-        // Set cURL options
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $queryString,
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Basic ' . $authHeader,
-                'Content-Type: application/x-www-form-urlencoded'
-            )
-        ));
-
-        // Execute the cURL request
-        $response = curl_exec($curl);
-
-        // Close cURL session
-        curl_close($curl);
-
-        // Handle the response
-        if ($response) {
-            $json = json_decode($response);
-            if(!empty($json->access_token)){
-                // simpan access_token
-                // echo $json->access_token;
-                $select = TokenSiasn::first();
-                $select->update([
-                    'api_ws' => $json->access_token
-                ]);
-                $return['status'] = true;
-                $return['message'] = "API WS Token Berhasil di Update";
-            }
-            else {
-                $return['status'] = false;
-                $return['message'] = $json->error;
-            }
-            return $return;
-        } else {
-            // Handle API request failure
-            $return['status'] = false;
-            $return['message'] = "Error: " . curl_error($curl);
-        }
-    }
-
-    function get_bkn_sso(){
-        $curl = curl_init();
-        curl_setopt_array(
-            $curl, array(
-            CURLOPT_URL => 'https://sso-siasn.bkn.go.id/auth/realms/public-siasn/protocol/openid-connect/token',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => 'client_id=mempawahws&grant_type=password&username=199603142020121003&password=Hahaha96',
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/x-www-form-urlencoded',
-                'Cookie: SERVERID=keycloak-01|ZMs/L|ZMs/L'
-            ),
-        ));
-        $response = curl_exec($curl);
-        curl_close($curl);
-        $json = json_decode($response);
-        if(!empty($json->access_token)){
-            // simpan access_token
-            $select = TokenSiasn::first();
-            $select->update([
-                'bkn_sso' => $json->access_token
-            ]);
-            $return['status'] = true;
-            $return['message'] = "SSO Token Berhasil di Update";
-        }
-        else {
-            $return['status'] = false;
-            $return['message'] = $json->error;
-        }
-        return $return;
     }
 
     // public function create()
