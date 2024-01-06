@@ -9,3 +9,12 @@ Route::get('biodata/{nip}', 'CetakController@biodata');
 Route::get('/template', function () {
     return view('biodata');
 });
+
+Route::any('{all}', function () {
+    return view('layout');
+})
+->where(['all' => '.*']);
+
+// Route::get('/', function () {
+//     return view('layout');
+// });
