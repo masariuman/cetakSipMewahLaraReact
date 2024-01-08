@@ -11,7 +11,7 @@ class Keluarga extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jafung: [],
+            datasets: [],
             create: "",
             jafungEditInput: "",
             cari: "",
@@ -47,7 +47,7 @@ class Keluarga extends Component {
         //             totalItemsCount: response.data.deeta_tag.total,
         //             pageRangeDisplayed: 10
         //         });
-        //         // console.log(this.state.jafung);
+        //         // console.log(this.state.datasets);
         //     });
     }
 
@@ -134,7 +134,7 @@ class Keluarga extends Component {
         //     })
         //     .then(response => {
         //         this.setState({
-        //             jafung: [response.data.deeta_tag, ...this.state.jafung],
+        //             jafung: [response.data.deeta_tag, ...this.state.datasets],
         //             create: "",
         //             loading: false
         //         });
@@ -195,7 +195,7 @@ class Keluarga extends Component {
             .get("http://127.0.0.1:8877/v1/referensi/jafung")
             .then(response => {
                 this.setState({
-                    jafung: response.data.data,
+                    datasets: response.data.data,
                     loading: false,
                     activePage: response.data.current_page,
                     itemsCountPerPage: response.data.per_page,
@@ -217,7 +217,7 @@ class Keluarga extends Component {
             .get('http://127.0.0.1:8877/v1/referensi/jafung?page='+pageNumber)
             .then(response => {
                 this.setState({
-                    jafung: response.data.data,
+                    datasets: response.data.data,
                     loading: false,
                     activePage: response.data.current_page,
                     itemsCountPerPage: response.data.per_page,
@@ -239,7 +239,7 @@ class Keluarga extends Component {
 
     componentDidMount() {
         this.getRefJafung();
-        // console.log(this.state.jafung);
+        // console.log(this.state.datasets);
     }
 
     componentDidUpdate() {
@@ -247,15 +247,15 @@ class Keluarga extends Component {
     }
 
     renderJafung() {
-        return !this.state.jafung.length ? <tr><td colSpan="3" className="text-center">Data Tidak Ditemukan</td></tr> :
-            this.state.jafung.map(jafung => (
-                <tr key={jafung.kode}>
-                    <th scope="row">{jafung.nomor}</th>
-                    <td>{jafung.nama_jab}</td>
-                    <td>{jafung.nama_jenjang}</td>
+        return !this.state.datasets.length ? <tr><td colSpan="3" className="text-center">Data Tidak Ditemukan</td></tr> :
+            this.state.datasets.map(dataset => (
+                <tr key={dataset.kode}>
+                    <th scope="row">{dataset.nomor}</th>
+                    <td>{dataset.nama_jab}</td>
+                    <td>{dataset.nama_jenjang}</td>
                     <td>
-                        <button data-target="#editModal" data-toggle="modal" className="mb-2 mr-2 border-0 btn-transition btn btn-shadow btn-outline-warning" type="button" onClick={this.handleEditButton.bind(this, jafung.url)}>Edit</button>
-                        <button className="mb-2 mr-2 border-0 btn-transition btn btn-shadow btn-outline-danger" type="button" onClick={this.handleDeleteButton.bind(this, jafung.url)}>Delete</button>
+                        <button data-target="#editModal" data-toggle="modal" className="mb-2 mr-2 border-0 btn-transition btn btn-shadow btn-outline-warning" type="button" onClick={this.handleEditButton.bind(this, dataset.url)}>Edit</button>
+                        <button className="mb-2 mr-2 border-0 btn-transition btn btn-shadow btn-outline-danger" type="button" onClick={this.handleDeleteButton.bind(this, dataset.url)}>Delete</button>
                     </td>
                 </tr>
             ));
