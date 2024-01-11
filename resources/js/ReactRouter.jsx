@@ -30,7 +30,7 @@ class ReactRouter extends Component {
             <Router>
                 <MobileMenu />
                 <Menu />
-                <Routes>9
+                <Routes>
                     {/* <Route exact path="/" element={< LandingPage />} /> */}
                     <Route exact path="/keluarga" element={< Keluarga />} />
                     {/* <Route exact path="/referensi/jafung" element={< ReferensiJafung />} /> */}
