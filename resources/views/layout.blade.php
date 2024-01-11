@@ -44,7 +44,8 @@
 
         <!-- <script src="/js/app.js" defer></script> -->
         @vitereactrefresh
-        @vite(['resources/sass/app.scss', 'resources/js/app.jsx'])
+        <!-- @vite(['resources/sass/app.scss', 'resources/js/app.jsx']) -->
+        @vite(['resources/js/app.jsx'])
     </head>
     <body class="menu-position-side menu-side-left full-screen with-content-panel">
         <div class="all-wrapper with-side-panel solid-bg-all" id="root"></div>
