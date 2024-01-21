@@ -273,10 +273,10 @@ class Keluarga extends Component {
                         </div>
                         <div className="onboarding-content with-gradient">
                         <h4 className="onboarding-title">
-                            Tambah Jabatan Fungsional Baru
+                            Tambah Pegawai Baru
                         </h4>
                         <div className="onboarding-text">
-                            Masukkan Jabatan Fungsional baru.
+                            Masukkan Pegawai baru.
                         </div>
                         <form onSubmit={this.handleSubmit}>
                             <div className="row">
@@ -285,8 +285,8 @@ class Keluarga extends Component {
                                     <input
                                         onChange={this.handleChange}
                                         value={this.state.create}
-                                        title="Nama  Jabatan Fungsional"
-                                        placeholder="Masukkan Nama  Jabatan Fungsional Baru.."
+                                        title="Nama  Pegawai"
+                                        placeholder="Masukkan Nama  Pegawai Baru.."
                                         type="text"
                                         className="form-control"
                                     />
@@ -294,7 +294,7 @@ class Keluarga extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <div className="form-group text-center">
-                                    <button className="mr-2 mb-2 btn btn-primary" data-target="#onboardingWideFormModal" data-toggle="modal" type="submit">Tambah  Jabatan Fungsional Baru</button>
+                                    <button className="mr-2 mb-2 btn btn-primary" data-target="#onboardingWideFormModal" data-toggle="modal" type="submit">Tambah  Pegawai Baru</button>
                                 </div>
                             </div>
                             </div>
@@ -319,10 +319,10 @@ class Keluarga extends Component {
                         </div>
                         <div className="onboarding-content with-gradient">
                         <h4 className="onboarding-title">
-                            Ubah Nama  Jabatan Fungsional
+                            Ubah Nama  Pegawai
                         </h4>
                         <div className="onboarding-text">
-                            Masukkan nama  Jabatan Fungsional baru.
+                            Masukkan nama  Pegawai baru.
                         </div>
                         <form onSubmit={this.handleEditSubmit}>
                             <div className="row">
@@ -331,8 +331,8 @@ class Keluarga extends Component {
                                     <input
                                         onChange={this.handleEditInputChange}
                                         value={this.state.jafungEditInput}
-                                        title="Nama  Jabatan Fungsional"
-                                        placeholder="Masukkan Nama  Jabatan Fungsional Baru.."
+                                        title="Nama  Pegawai"
+                                        placeholder="Masukkan Nama  Pegawai Baru.."
                                         type="text"
                                         className="form-control"
                                     />
@@ -340,7 +340,7 @@ class Keluarga extends Component {
                             </div>
                             <div className="col-sm-12">
                                 <div className="form-group text-center">
-                                    <button className="mr-2 mb-2 btn btn-warning" data-target="#onboardingWideFormModal" data-toggle="modal" type="submit">Ubah Nama  Jabatan Fungsional</button>
+                                    <button className="mr-2 mb-2 btn btn-warning" data-target="#onboardingWideFormModal" data-toggle="modal" type="submit">Ubah Nama  Pegawai</button>
                                 </div>
                             </div>
                             </div>
@@ -364,8 +364,8 @@ class Keluarga extends Component {
                         <div className="os-icon os-icon-jafung"></div>
                         </div>
                         <div className="masariuman-textleft">
-                            <span className="masariuman-bold"> JABATAN FUNGSIONAL</span> <br/>
-                            <small>Manajemen  Jabatan Fungsional</small>
+                            <span className="masariuman-bold">CETAK KELUARGA PEGAWAI</span> <br/>
+                            <small>Manajemen Cetak Keluarga Pegawai</small>
                         </div>
                     </div>
                     <div className="top-menu-controls">
@@ -374,10 +374,10 @@ class Keluarga extends Component {
                 </div>
                 <ul className="breadcrumb">
                     <li className="breadcrumb-item">
-                        <a> JABATAN FUNGSIONAL</a>
+                        <a>Daftar Pegawai</a>
                     </li>
                     <li className="breadcrumb-item">
-                        <span>Manajemen  Jabatan Fungsional</span>
+                        <span>Manajemen Pegawai</span>
                     </li>
                 </ul>
 
@@ -388,16 +388,16 @@ class Keluarga extends Component {
                                 {/* content here */}
                                 <div className="element-box">
                                     <h5 className="form-header">
-                                         Daftar Jabatan Fungsional
+                                         Daftar Pegawai
                                     </h5>
                                     <div className="form-desc">
-                                        Data Manajemen Jabatan Fungsional
+                                        Data Manajemen Pegawai
                                     </div>
                                     <div>
-                                        <button className="mr-2 mb-2 btn btn-primary" data-target="#tambahModal" data-toggle="modal" type="button" id="buttonTambahModal">Tambah  Jabatan Fungsional Baru</button>
+                                        <button className="mr-2 mb-2 btn btn-primary" data-target="#tambahModal" data-toggle="modal" type="button" id="buttonTambahModal">Tambah  Pegawai Baru</button>
                                         <div className="col-sm-4 float-right">
                                             <input type="text" className="form-control" onChange={this.handleChangeCari}
-                                                value={this.state.cari} placeholder="Cari  Jabatan Fungsional..."></input>
+                                                value={this.state.cari} placeholder="Cari Pegawai..."></input>
                                         </div>
                                     </div>
                                     <div className="table-responsive" id="ruanganTable">
