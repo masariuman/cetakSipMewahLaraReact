@@ -501,6 +501,9 @@ class CetakController extends Controller
             } else {
                 $value['kelamin'] = "-";
             }
+            if ($value['nip_keluarga'] != null || !empty($value['nip_keluarga']) || $value['nip_keluarga'] != "") {
+                $value['keterangan_pekerjaan'] = "APARATUR SIPIL NEGARA (ASN)";
+            }
         }
         return $datasets;
     }
