@@ -63,6 +63,7 @@ class CetakController extends Controller
         $datasetsRiwHukuman             = $this->riwHukuman($nip);
         $datasetsOrangTua               = $this->riwKeluarga($nip,['41','42','43','51','52','53']);
         $datasetsPasangan               = $this->riwKeluarga($nip,['11','12','13','21','22','23']);
+        // dd($datasetsPasangan);
         $datasetsAnak                   = $this->riwKeluarga($nip,['31','32','33']);
         $penandatangan                  = $this->penandatangan();
         $today                          = $this->helper->today();
@@ -465,11 +466,11 @@ class CetakController extends Controller
             if ($value['kota_lahir'] === null || empty($value['kota_lahir']) || $value['kota_lahir'] === "") {
                 $value['kota_lahir'] = null;
             }
-            if ($value['tanggal_lahir'] === null || empty($value['tanggal_lahir']) || $value['tanggal_lahir'] === "") {
-                $value['tanggal_lahir'] = null;
-            } else {
-                $value['tanggal_lahir'] = $this->helper->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir'])));
-            }
+            // if ($value['tanggal_lahir'] === null || empty($value['tanggal_lahir']) || $value['tanggal_lahir'] === "") {
+            //     $value['tanggal_lahir'] = null;
+            // } else {
+            //     $value['tanggal_lahir'] = $this->helper->tanggalIndo(date('d',strtotime($value['tanggal_lahir'])), date('m',strtotime($value['tanggal_lahir'])), date('Y',strtotime($value['tanggal_lahir'])));
+            // }
             if ($value['kota_lahir'] === null && $value['tanggal_lahir'] != null) {
                 $value['lahir'] = $value['tanggal_lahir'];
             }
