@@ -76,7 +76,7 @@ class MasterDataExport extends DefaultValueBinder implements FromCollection, Wit
             'Program Studi',
             'Golongan Ruang',
             'Pangkat',
-            'TMT Pangkat'
+            'TMT Pangkat',
             'Eselon',
             'Jenis Jabatan',
             'Jabatan',
