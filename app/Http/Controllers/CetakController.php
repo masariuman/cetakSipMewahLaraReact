@@ -509,8 +509,16 @@ class CetakController extends Controller
     }
 
     function penandatangan() {
-        $masterjab = MasterJabatan::where('id_satker', '0419000000')->where('id_unker','0419000000')->first();
-        $penandatangan = Pegawai::where('nip',$masterjab['nip_defenitif'])->first();
+        $masterjab = MasterJabatan::where('id_satker', '0419000000')->where('id_unker','0419000000')->orderBy('id','DESC')->first();
+        $identitasPenandatangan['plt'] = "";
+        if ($masterjab['nip_defenitif'] != null) {
+            $penandatangan = Pegawai::where('nip',$masterjab['nip_defenitif'])->first();
+            $riwPangkat = RiwPangkat::where('nip',$masterjab['nip_defenitif'])->orderBy('kode_gol_ruang','DESC')->first();
+        } else {
+            $penandatangan = Pegawai::where('nip',$masterjab['nip_plt'])->first();
+            $riwPangkat = RiwPangkat::where('nip',$masterjab['nip_plt'])->orderBy('kode_gol_ruang','DESC')->first();
+            $identitasPenandatangan['plt'] = 'Plt. ';
+        }
         $namaPenandatangan = $penandatangan['nama'];
         if ($penandatangan['gelar_depan'] != null || !empty($penandatangan['gelar_depan']) || $penandatangan['gelar_depan'] != "") {
             $namaPenandatangan = $penandatangan['gelar_depan'].". ".$namaPenandatangan;
@@ -523,7 +531,6 @@ class CetakController extends Controller
         $nipPenandatangan3 = substr($penandatangan['nip'],14,1);
         $nipPenandatangan4 = substr($penandatangan['nip'],15,3);
         $nipPenandatangan = $nipPenandatangan1." ".$nipPenandatangan2." ".$nipPenandatangan3." ".$nipPenandatangan4;
-        $riwPangkat = RiwPangkat::where('nip',$masterjab['nip_defenitif'])->orderBy('kode_gol_ruang','DESC')->first();
         $pangkat = RefGolRuang::where('kode',$riwPangkat['kode_gol_ruang'])->first();
         $identitasPenandatangan['nipPenandatangan'] = $nipPenandatangan;
         $identitasPenandatangan['namaPenandatangan'] = $namaPenandatangan;

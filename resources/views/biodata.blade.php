@@ -570,7 +570,7 @@
                                 <td style="text-align:center;">
                                     Mempawah, {{$today}}<br />
                                     An. BUPATI MEMPAWAH<br />
-                                    Kepala Badan Kepegawaian dan<br />
+                                    {{$penandatangan['plt']}}Kepala Badan Kepegawaian dan<br />
                                     Pengembangan Sumber Daya Manusia<br />
                                     Kabupaten Mempawah<br /><br /><img style="width:100px;" src="ttdPenandatangan.png" /><br /><br />
                                     <span class="namaKepala"><u>{{$penandatangan['namaPenandatangan']}}</u></span><br />
