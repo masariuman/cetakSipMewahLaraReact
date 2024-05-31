@@ -107,7 +107,7 @@ class CetakController extends Controller
 
         $biodata = Pdf::loadview('biodata',$datasets);
         $biodata->setPaper('legal', 'potrait');
-        return $biodata->stream('biodata.pdf');
+        return $biodata->stream($datasetPegawai["namaLengkap"].'.pdf');
     }
 
     function pegawai($nip){

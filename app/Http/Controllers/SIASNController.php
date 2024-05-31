@@ -66,7 +66,7 @@ class SIASNController extends Controller
 
     function foto_pegawai($nip){
         $pegawai = $this->dataUtama($nip);
-        if ($pegawai === "Data tidak ditemukan") {
+        if ($pegawai === "Data tidak ditemukan" || $pegawai === null) {
             return "{";
         }
         $pegawai_id = $pegawai->id;
