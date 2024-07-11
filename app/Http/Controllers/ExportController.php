@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Helper;
 use Illuminate\Http\Request;
 use App\Exports\MasterDataExport;
+use App\Exports\OpdDataExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Pegawai;
 
@@ -21,5 +22,11 @@ class ExportController extends Controller
         $today = $this->helper->today();
         $filename = "MasterData ".$today.".xlsx";
         return Excel::download(new MasterDataExport, $filename);
+    }
+
+    public function opdData($id) {
+        $today = $this->helper->today();
+        $filename = "MasterData ".$today.".xlsx";
+        return Excel::download(new OpdDataExport($id), $filename);
     }
 }
