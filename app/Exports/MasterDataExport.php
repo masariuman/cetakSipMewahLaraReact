@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pegawai;
 use App\Models\RefUnitKerja;
 use App\Models\RefSatuanKerja;
+use App\Models\RefTingkatPendidikan;
 use App\Models\RiwPendidikan;
 
 class MasterDataExport extends DefaultValueBinder implements FromCollection, WithHeadings, WithCustomValueBinder, WithStyles
@@ -31,10 +32,15 @@ class MasterDataExport extends DefaultValueBinder implements FromCollection, Wit
 
         $query = DB::select('SELECT p.nip, p.gelar_depan, p.nama, p.gelar_belakang, p.nama AS namaLengkap, p.kota_lahir, p.tanggal_lahir, jk.nama_jns_kelamin, p.nip as tingkatPendidikan, p.nip as programStudi, g.nama_gol_ruang, g.nama_pangkat, r.tmt_pangkat, re.neselon, rjj.nama_jns_jab, rkj.nama_kategori_jab, j.nama_jab, msk.satuan_kerja, j.id_unker AS idunkersimpeg, j.id_unker AS unker1, j.id_unker AS unker2, j.id_unker AS unker3, ra.nama_agama, rsp.nama_status_pegawai, rjp.nama_jns_pegawai, rsk.nama_status_kawin, rgd.nama_gol_darah, p.alamat, p.rt, p.rw, p.no_hp, p.email, p.no_karpeg, p.no_bpjs, p.no_taspen, p.no_karis_su, p.npwp, p.nik, p.no_kk, p.no_akta, p.catatan, p.keterangan FROM ((((((((((((( pegawai p LEFT JOIN master_jab j ON p.nip = j.nip_defenitif ) LEFT JOIN riw_pangkat r ON p.nip = r.nip ) LEFT JOIN ref_gol_ruang g ON r.kode_gol_ruang = g.kode ) LEFT JOIN ref_jns_kelamin jk ON p.kode_jns_kelamin = jk.kode ) LEFT JOIN ref_agama ra ON p.kode_agama = ra.kode ) LEFT JOIN ref_status_pegawai rsp ON p.kode_status_pegawai = rsp.kode ) LEFT JOIN ref_jns_pegawai rjp ON p.kode_jns_pegawai = rjp.kode ) LEFT JOIN ref_status_kawin rsk ON p.kode_status_kawin = rsk.kode ) LEFT JOIN ref_gol_darah rgd ON p.kode_gol_darah = rgd.kode ) LEFT JOIN ref_eselon re ON j.kode_eselon = re.keselon ) LEFT JOIN master_satuan_kerja msk ON j.id_satker = msk.kode_satker ) LEFT JOIN ref_jns_jab rjj ON j.kode_jns_jab = rjj.kode ) LEFT JOIN ref_kategori_jab rkj ON j.kode_kategori_jab = rkj.kode ) WHERE p.is_deleted = 0  AND j.is_delete = 0  AND p.kode_kedudukan_pegawai = 1  AND r.is_deleted = 0  AND r.tmt_pangkat = ( SELECT MAX( riw_pangkat.tmt_pangkat ) FROM riw_pangkat WHERE p.nip = riw_pangkat.nip );');
 
+        $refTingkatPendidikan = RefTingkatPendidikan::all();
         foreach ($query as $key => $value) {
             $riwPendidikan = RiwPendidikan::where('is_deleted', '0')->where('nip',$value->nip)->orderByDesc('kode_tingkat_pendidikan')->first();
             $value->programStudi = $riwPendidikan->program_studi;
-            $value->tingkatPendidikan = $riwPendidikan->kode_tingkat_pendidikan->nama_tingkat_pendidikan_lengkap;
+            foreach ($refTingkatPendidikan as $key => $rtp) {
+                if ($rtp->kode === $riwPendidikan->kode_tingkat_pendidikan) {
+                    $value->tingkatPendidikan = $rtp->nama_tingkat_pendidikan_lengkap;
+                }
+            }
         }
 
         $satuanKerja = RefSatuanKerja::all();
