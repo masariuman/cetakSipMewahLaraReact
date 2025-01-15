@@ -46,8 +46,8 @@ class CetakController extends Controller
 
     public function biodata($nip)
     {
-        $this->siasn->get_api_ws();
-        $this->siasn->get_bkn_sso();
+        // $this->siasn->get_api_ws();
+        // $this->siasn->get_bkn_sso();
 
         $datasetPegawai                 = $this->pegawai($nip);
         $datasetsRiwPangkat             = $this->riwPangkat($nip);
