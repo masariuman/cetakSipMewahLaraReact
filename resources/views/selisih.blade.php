@@ -1,5 +1,5 @@
-<h1>Tanpa Basa Basi, inilah dia Selisihnya.</h1>
 <ul>
+    <h1>Tanpa Basa Basi, inilah dia Selisihnya.</h1>
     <table>
     @foreach($data as $no => $data)
         <tr>
@@ -7,8 +7,5 @@
         </tr>
     @endforeach
     </table>
-
-    <tr>
-        <img src="/cat.webp" />
-    </tr>
+    <img src="/cat.webp" />
 </ul>
