@@ -7,4 +7,8 @@
         </tr>
     @endforeach
     </table>
+
+    <tr>
+        <img src="/cat.webp" />
+    </tr>
 </ul>
