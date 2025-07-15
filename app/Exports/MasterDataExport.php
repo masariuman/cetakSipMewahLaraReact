@@ -81,7 +81,7 @@ class MasterDataExport extends DefaultValueBinder implements FromCollection, Wit
                 }
             }
         }
-        return collect($query);
+        return collect(array_unique($query));
     }
 
     public function headings(): array
