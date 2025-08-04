@@ -68,6 +68,7 @@ class CetakController extends Controller
         $penandatangan                  = $this->penandatangan();
         $today                          = $this->helper->today();
         $foto_pegawai                   = $this->siasn->foto_pegawai($nip);
+        // dd($foto_pegawai);
 
         !isset($datasetPegawai) ? $datasetPegawai = null : $datasetPegawai;
         !isset($datasetsRiwPangkat[0]) ? $datasetsRiwPangkat = null : $datasetsRiwPangkat;
