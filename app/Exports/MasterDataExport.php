@@ -22,6 +22,8 @@ use App\Models\RefTingkatPendidikan;
 use App\Models\RiwPendidikan;
 use App\Models\RiwJabatan;
 
+// use Log;
+
 class MasterDataExport extends DefaultValueBinder implements FromCollection, WithHeadings, WithCustomValueBinder, WithStyles
 {
     /**
@@ -80,6 +82,10 @@ class MasterDataExport extends DefaultValueBinder implements FromCollection, Wit
             }
             $value->namaLengkap = $namaLengkap;
             $riwPendidikan = RiwPendidikan::where('is_deleted', '0')->where('nip',$value->nip)->orderByDesc('kode_tingkat_pendidikan')->first();
+            if(!isset($riwPendidikan->program_studi)) {
+                dd($value->nip);
+            }
+            // Log::info($riwPendidikan);
             $value->programStudi = $riwPendidikan->program_studi;
             foreach ($refTingkatPendidikan as $key => $rtp) {
                 if ($rtp->kode === $riwPendidikan->kode_tingkat_pendidikan) {
