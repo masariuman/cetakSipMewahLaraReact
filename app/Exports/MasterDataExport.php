@@ -83,7 +83,7 @@ class MasterDataExport extends DefaultValueBinder implements FromCollection, Wit
             $value->namaLengkap = $namaLengkap;
             $riwPendidikan = RiwPendidikan::where('is_deleted', '0')->where('nip',$value->nip)->orderByDesc('kode_tingkat_pendidikan')->first();
             if(!isset($riwPendidikan->program_studi)) {
-                dd($value->nip);
+                // dd($value->nip);
             }
             // Log::info($riwPendidikan);
             $value->programStudi = $riwPendidikan->program_studi;
