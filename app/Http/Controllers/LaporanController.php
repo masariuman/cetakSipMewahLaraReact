@@ -46,6 +46,20 @@ class LaporanController extends Controller
                 case "X": $data["gol10pppk"]++; $data["jumlahGolongan"]++; break;
                 default: break;
             }
+            switch ($value->nama_gol_ruang) {
+                case "I/a": $data["gol1a"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
+                case "I/b": $data["gol1b"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
+                case "I/c": $data["gol1c"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
+                case "I/d": $data["gol1d"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
+                case "II/a": $data["gol2a"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
+                case "II/b": $data["gol2b"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
+                case "II/c": $data["gol2c"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
+                case "II/d": $data["gol2d"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
+                case "III/a": $data["gol3a"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
+                case "III/b": $data["gol3b"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
+                case "III/c": $data["gol3c"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
+                default: break;
+            }
         }
         // $datasets = 1;
         $today = $this->helper->today();
