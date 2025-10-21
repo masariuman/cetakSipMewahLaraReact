@@ -300,57 +300,57 @@
                     <tr>
                         <td rowspan="11" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">PENDIDIKAN</td>
                         <td style="width:35%;">SD</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $sd }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>SLTP/SMP</td>
-                        <td></td>
+                        <td>{{ $smp }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>SLTA/SMA</td>
-                        <td></td>
+                        <td>{{ $sma }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>DIPLOMA I</td>
-                        <td></td>
+                        <td>{{ $d1 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>DIPLOMA II</td>
-                        <td></td>
+                        <td>{{ $d2 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>DIPLOMA III</td>
-                        <td></td>
+                        <td>{{ $d3 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>DIPLOMA IV</td>
-                        <td></td>
+                        <td>{{ $d4 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>SARJANA</td>
-                        <td></td>
+                        <td>{{ $s1 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>SARJANA (PROFESI)</td>
-                        <td></td>
+                        <td>{{ $profesi }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>PASKA SARJANA</td>
-                        <td></td>
+                        <td>{{ $s2 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $jumlahPendidikan }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
