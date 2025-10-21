@@ -43,8 +43,7 @@ class LaporanController extends Controller
                 case "VII": $gol7pppk++; $jumlahGolongan++; break;
                 case "IX": $gol9pppk++; $jumlahGolongan++; break;
                 case "X": $gol10pppk++; $jumlahGolongan++; break;
-                default:
-                    break;
+                default: break;
             }
         }
         $datasets = 1;
