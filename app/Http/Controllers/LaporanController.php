@@ -7,6 +7,8 @@ use App\Http\Controllers\Helper;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\RiwPendidikan;
+
 class LaporanController extends Controller
 {
     private $helper;
@@ -46,18 +48,19 @@ class LaporanController extends Controller
                 case "X": $data["gol10pppk"]++; $data["jumlahGolongan"]++; break;
                 default: break;
             }
-            switch ($value->nama_gol_ruang) {
-                case "I/a": $data["gol1a"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
-                case "I/b": $data["gol1b"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
-                case "I/c": $data["gol1c"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
-                case "I/d": $data["gol1d"]++; $data["gol1"]++; $data["jumlahGolongan"]++; break;
-                case "II/a": $data["gol2a"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
-                case "II/b": $data["gol2b"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
-                case "II/c": $data["gol2c"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
-                case "II/d": $data["gol2d"]++; $data["gol2"]++; $data["jumlahGolongan"]++; break;
-                case "III/a": $data["gol3a"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
-                case "III/b": $data["gol3b"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
-                case "III/c": $data["gol3c"]++; $data["gol3"]++; $data["jumlahGolongan"]++; break;
+            $riwPendidikan = RiwPendidikan::where('nip',$value->nip)->where('is_deleted', 0)->orderBy('kode_tingkat_pendidikan','DESC')->first();
+            switch ($riwPendidikan['kode_tingkat_pendidikan']) {
+                case "01": $data["sd"]++; $data["jumlahPendidikan"]++; break;
+                case "02": $data["smp"]++; $data["jumlahPendidikan"]++; break;
+                case "03": $data["sma"]++; $data["jumlahPendidikan"]++; break;
+                case "04": $data["d1"]++; $data["jumlahPendidikan"]++; break;
+                case "05": $data["d2"]++; $data["jumlahPendidikan"]++; break;
+                case "06": $data["d3"]++; $data["jumlahPendidikan"]++; break;
+                case "07": $data["d4"]++; $data["jumlahPendidikan"]++; break;
+                case "08": $data["s1"]++; $data["jumlahPendidikan"]++; break;
+                case "09": $data["profesi"]++; $data["jumlahPendidikan"]++; break;
+                case "10": $data["s2"]++; $data["jumlahPendidikan"]++; break;
+                case "11": $data["s2"]++; $data["jumlahPendidikan"]++; break;
                 default: break;
             }
         }
