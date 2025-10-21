@@ -7,6 +7,7 @@ use App\Http\Controllers\Helper;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Pegawai;
 use App\Models\RiwPendidikan;
 
 class LaporanController extends Controller
@@ -64,6 +65,9 @@ class LaporanController extends Controller
                 default: break;
             }
         }
+        $data["laki"] = Pegawai::where('kode_jns_kelamin', 1)->where('kode_kedudukan_pegawai',1)->count();
+        $data["perempuan"] = Pegawai::where('kode_jns_kelamin', 2)->where('kode_kedudukan_pegawai',1)->count();
+        $data["jumlahKelamin"] = Pegawai::where('kode_kedudukan_pegawai', 1)->count();
         // $datasets = 1;
         $today = $this->helper->today();
         $data["today"] = $today;
