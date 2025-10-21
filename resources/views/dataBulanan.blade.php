@@ -52,6 +52,62 @@
             table.darkTable tfoot td {
             font-size: 12px;
             }
+
+            table.laporanTable {
+            font-family: "Arial Black", Gadget, sans-serif;
+            /* border: 2px solid #000000; */
+            border-bottom: 3px solid #000000;
+            /* background-color: #DCFFD2; */
+            background-color: #FFFFFF;
+            width: 100%;
+            /* height: 200px; */
+            /* margin-bottom: 50px; */
+            text-align: center;
+            border-collapse: collapse;
+            }
+            table.laporanTable td, table.laporanTable th {
+            padding: 3px 5px;
+            }
+            table.laporanTable tbody td {
+            font-size: 13px;
+            color: #000000;
+            }
+            /* table.laporanTable tr:nth-child(even) {
+            background: #FFFFFF;
+            } */
+            table.laporanTable thead {
+            /* background: #138E21; */
+            background: #FFFFFF;
+            border-bottom: 3px solid #000000;
+            border-top: 3px solid #000000;
+            }
+            table.laporanTable thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+            /* border-left: 2px solid #4A4A4A; */
+            }
+            table.laporanTable thead th:first-child {
+            border-left: none;
+            }
+
+            table.laporanTable tfoot td {
+            font-size: 12px;
+            }
+
+            .bg_green {
+            background-color: #DCFFD2;
+            }
+
+            .color_white {
+            color: #FFFFFF !important;
+            }
+
+            .bg_oldGreen {
+            background-color: #138E21;
+            }
+
             .namaKepala {
                 font-family: Georgia, serif;
                 color: #000000;
@@ -99,64 +155,153 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="darkTable" style="" border="4">
+            <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="10">GOLONGAN</td>
-                        <td>GOLONGAN I</td>
-                        <td></td>
+                        <td rowspan="27" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">GOLONGAN</td>
+                        <td>GOLONGAN I/a</td>
+                        <td style="width:10%;">{{ $gol1a }}</td>
+                        <td style="width:10%;">ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN I/b</td>
+                        <td>{{ $gol1b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN II</td>
-                        <td></td>
+                        <td>GOLONGAN I/c</td>
+                        <td>{{ $gol1c }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN III</td>
-                        <td></td>
+                        <td>GOLONGAN I/d</td>
+                        <td>{{ $gol1d }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN I</td>
+                        <td>{{ $gol1 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN IV</td>
-                        <td></td>
+                        <td>GOLONGAN II/a</td>
+                        <td>{{ $gol2a }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN III (PPPK)</td>
-                        <td></td>
+                        <td>GOLONGAN II/b</td>
+                        <td>{{ $gol2b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN V (PPPK)</td>
-                        <td></td>
+                        <td>GOLONGAN II/c</td>
+                        <td>{{ $gol2c }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN VII (PPPK)</td>
-                        <td></td>
+                        <td>GOLONGAN II/d</td>
+                        <td>{{ $gol2d }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN II</td>
+                        <td>{{ $gol2 }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN IX (PPPK)</td>
-                        <td></td>
+                        <td>GOLONGAN III/a</td>
+                        <td>{{ $gol3a }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>GOLONGAN X (PPPK)</td>
-                        <td></td>
+                        <td>GOLONGAN III/b</td>
+                        <td>{{ $gol3b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
+                        <td>GOLONGAN III/c</td>
+                        <td>{{ $gol3c }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
-                        <td rowspan="11">PENDIDIKAN</td>
-                        <td>SD</td>
-                        <td></td>
+                        <td>GOLONGAN III/d</td>
+                        <td>{{ $gol3d }}</td>
                         <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN III</td>
+                        <td>{{ $gol3 }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN IV/a</td>
+                        <td>{{ $gol4a }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN IV/b</td>
+                        <td>{{ $gol4b }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN IV/c</td>
+                        <td>{{ $gol4c }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN IV/d</td>
+                        <td>{{ $gol4d }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr>
+                        <td>GOLONGAN IV/e</td>
+                        <td>{{ $gol4e }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN IV</td>
+                        <td>{{ $gol4 }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN III (PPPK)</td>
+                        <td>{{ $gol3pppk }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN V (PPPK)</td>
+                        <td>{{ $gol5pppk }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN VII (PPPK)</td>
+                        <td>{{ $gol7pppk }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN IX (PPPK)</td>
+                        <td>{{ $gol9pppk }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_green">
+                        <td>JUMLAH GOLONGAN X (PPPK)</td>
+                        <td>{{ $gol10pppk }}</td>
+                        <td>ORANG</td>
+                    </tr>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH SELURUH GOLONGAN</td>
+                        <td class="color_white">{{ $jumlahGolongan }}</td>
+                        <td class="color_white">ORANG</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
+                    <tr>
+                        <td rowspan="11" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">PENDIDIKAN</td>
+                        <td style="width:35%;">SD</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>SLTP/SMP</td>
@@ -203,32 +348,40 @@
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
                     <tr>
-                        <td rowspan="3">JENIS KELAMIN</td>
+                        <td rowspan="3" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">JENIS KELAMIN</td>
                         <td>LAKI-LAKI</td>
-                        <td></td>
-                        <td>ORANG</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>PEREMPUAN</td>
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
                     <tr>
-                        <td rowspan="8">ESELONERING</td>
+                        <td rowspan="8" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">ESELONERING</td>
                         <td>ESELON II.a</td>
-                        <td></td>
-                        <td>ORANG</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON II.b</td>
@@ -260,16 +413,20 @@
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
                     <tr>
-                        <td rowspan="6">AGAMA</td>
+                        <td rowspan="6" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">AGAMA</td>
                         <td>ISLAM</td>
-                        <td></td>
-                        <td>ORANG</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>KRISTEN</td>
@@ -291,16 +448,20 @@
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
                     <tr>
-                        <td rowspan="4">JENIS KEPEGAWAIAN</td>
+                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 40px; width:45%;">JENIS KEPEGAWAIAN</td>
                         <td>STRUKTURAL</td>
-                        <td></td>
-                        <td>ORANG</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>FUNGSIONAL</td>
@@ -312,16 +473,20 @@
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
+                </tbody>
+            </table>
+            <table class="laporanTable" style="" border="4">
+                <tbody>
                     <tr>
-                        <td rowspan="4">KATEGORI KEPEGAWAIAN</td>
+                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 35px; width:45%;">KATEGORI KEPEGAWAIAN</td>
                         <td>TENAGA TEKNIS</td>
-                        <td></td>
-                        <td>ORANG</td>
+                        <td style="width:10%;"></td>
+                        <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>TENAGA KESEHATAN</td>
@@ -333,31 +498,10 @@
                         <td></td>
                         <td>ORANG</td>
                     </tr>
-                    <tr>
-                        <td>JUMLAH</td>
-                        <td></td>
-                        <td>ORANG</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="20">DETAIL GOLONGAN RUANG/PANGKAT</td>
-                        <td>I/C</td>
-                        <td></td>
-                        <td>ORANG</td>
-                    </tr>
-                    <tr>
-                        <td>I/D</td>
-                        <td></td>
-                        <td>ORANG</td>
-                    </tr>
-                    <tr>
-                        <td>II/A</td>
-                        <td></td>
-                        <td>ORANG</td>
-                    </tr>
-                    <tr>
-                        <td>II/B</td>
-                        <td></td>
-                        <td>ORANG</td>
+                    <tr class="bg_oldGreen">
+                        <td class="color_white">JUMLAH</td>
+                        <td class="color_white"></td>
+                        <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
             </table>
