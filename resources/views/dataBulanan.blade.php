@@ -360,17 +360,17 @@
                     <tr>
                         <td rowspan="3" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">JENIS KELAMIN</td>
                         <td>LAKI-LAKI</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $laki }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>PEREMPUAN</td>
-                        <td></td>
+                        <td>{{ $perempuan }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $jumlahKelamin }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
