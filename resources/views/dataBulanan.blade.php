@@ -422,42 +422,42 @@
                     <tr>
                         <td rowspan="8" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">ESELONERING</td>
                         <td>ESELON II.a</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $eselon2a }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON II.b</td>
-                        <td></td>
+                        <td>{{ $eselon2b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON III.a</td>
-                        <td></td>
+                        <td>{{ $eselon3a }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON III.b</td>
-                        <td></td>
+                        <td>{{ $eselon3b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON IV.a</td>
-                        <td></td>
+                        <td>{{ $eselon4a }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>ESELON IV.b</td>
-                        <td></td>
+                        <td>{{ $eselon4b }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>NON ESELON</td>
-                        <td></td>
+                        <td>{{ $nonEselon }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $jumlahEselon }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
