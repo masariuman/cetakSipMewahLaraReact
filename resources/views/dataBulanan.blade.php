@@ -96,6 +96,48 @@
             font-size: 12px;
             }
 
+            table.title {
+            font-family: "Arial Black", Gadget, sans-serif;
+            /* border: 2px solid #000000; */
+            /* border-bottom: 3px solid #000000; */
+            background-color: #ffffff;
+            width: 100%;
+            /* height: 200px; */
+            margin-bottom: 50px;
+            text-align: center;
+            border-collapse: collapse;
+            }
+            table.title td, table.darkTable th {
+            padding: 3px 5px;
+            }
+            table.title tbody td {
+            font-size: 13px;
+            color: #000000;
+            }
+            table.title tr:nth-child(even) {
+            background: #FFFFFF;
+            }
+            table.title thead {
+            background: #ffffff;
+            /* border-bottom: 3px solid #000000;
+            border-top: 3px solid #000000; */
+            }
+            table.title thead th {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+            /* border-left: 2px solid #4A4A4A; */
+            }
+            table.title thead th:first-child {
+            border-left: none;
+            }
+
+            table.title tfoot td {
+            font-size: 12px;
+            }
+
+
             .bg_green {
             background-color: #DCFFD2;
             }
@@ -143,7 +185,7 @@
                     </td>
                 </tr>
             </table>
-            <table class="darkTable" style="margin-top:40px;margin-bottom:30px">
+            <table class="title" style="margin-top:40px;margin-bottom:30px">
                 <thead>
                     <tr>
                         <th style="font-size:35px;">DATA ASN KABUPATEN MEMPAWAH</th>
