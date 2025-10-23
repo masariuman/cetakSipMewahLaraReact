@@ -73,6 +73,14 @@ class LaporanController extends Controller
                 case "IV b": $data["eselon4b"]++; $data["jumlahEselon"]++; break;
                 default: $data["nonEselon"]++; $data["jumlahEselon"]++; break;
             }
+            switch ($value->nama_agama) {
+                case "ISLAM": $data["islam"]++; $data["jumlahAgama"]++; break;
+                case "KRISTEN": $data["kristen"]++; $data["jumlahAgama"]++; break;
+                case "KATHOLIK": $data["katholik"]++; $data["jumlahAgama"]++; break;
+                case "HINDU": $data["hindu"]++; $data["jumlahAgama"]++; break;
+                case "BUDHA": $data["buddha"]++; $data["jumlahAgama"]++; break;
+                default: break;
+            }
         }
         $data["laki"] = Pegawai::where('kode_jns_kelamin', 1)->where('kode_kedudukan_pegawai',1)->count();
         $data["perempuan"] = Pegawai::where('kode_jns_kelamin', 2)->where('kode_kedudukan_pegawai',1)->count();
