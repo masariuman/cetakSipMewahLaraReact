@@ -73,14 +73,18 @@ class LaporanController extends Controller
                 case "IV b": $data["eselon4b"]++; $data["jumlahEselon"]++; break;
                 default: $data["nonEselon"]++; $data["jumlahEselon"]++; break;
             }
-            // switch ($value->nama_agama) {
-            //     case "ISLAM": $data["islam"]++; $data["jumlahAgama"]++; break;
-            //     case "KRISTEN": $data["kristen"]++; $data["jumlahAgama"]++; break;
-            //     case "KATHOLIK": $data["katholik"]++; $data["jumlahAgama"]++; break;
-            //     case "HINDU": $data["hindu"]++; $data["jumlahAgama"]++; break;
-            //     case "BUDHA": $data["buddha"]++; $data["jumlahAgama"]++; break;
-            //     default: break;
-            // }
+            switch ($value->nama_jns_jab) {
+                case "JABATAN STRUKTURAL": $data["struktural"]++; $data["jumlahJenisKepegawaian"]++; break;
+                case "JABATAN FUNGSIONAL": $data["fungsional"]++; $data["jumlahJenisKepegawaian"]++; break;
+                case "JABATAN PELAKSANA": $data["pelaksana"]++; $data["jumlahJenisKepegawaian"]++; break;
+                default: break;
+            }
+            switch ($value->nama_kategori_jab) {
+                case "TENAGA TEKNIS": $data["tenagaTeknis"]++; $data["jumlahKategoriKepegawaian"]++; break;
+                case "TENAGA KESEHATAN": $data["tenagaKesehatan"]++; $data["jumlahKategoriKepegawaian"]++; break;
+                case "TENAGA GURU": $data["tenagaGuru"]++; $data["jumlahKategoriKepegawaian"]++; break;
+                default: break;
+            }
         }
         $data["laki"] = Pegawai::where('kode_jns_kelamin', 1)->where('kode_kedudukan_pegawai',1)->count();
         $data["perempuan"] = Pegawai::where('kode_jns_kelamin', 2)->where('kode_kedudukan_pegawai',1)->count();
@@ -89,12 +93,6 @@ class LaporanController extends Controller
         $data["kristen"] = Pegawai::where('kode_agama', 2)->where('kode_kedudukan_pegawai',1)->count();
         $data["katholik"] = Pegawai::where('kode_agama', 3)->where('kode_kedudukan_pegawai',1)->count();
         $data["hindu"] = Pegawai::where('kode_agama', 4)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
-        $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
         $data["buddha"] = Pegawai::where('kode_agama', 5)->where('kode_kedudukan_pegawai',1)->count();
         // $datasets = 1;
         $today = $this->helper->today();
