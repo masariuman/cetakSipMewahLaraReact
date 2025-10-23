@@ -412,7 +412,7 @@
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white">{{ $jumlahKelamin }}</td>
+                        <td class="color_white">{{ $JumlahPegawaiAktif }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
@@ -467,32 +467,32 @@
                     <tr>
                         <td rowspan="6" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">AGAMA</td>
                         <td>ISLAM</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $islam }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>KRISTEN</td>
-                        <td></td>
+                        <td>{{ $kristen }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>KATHOLIK</td>
-                        <td></td>
+                        <td>{{ $katholik }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>HINDU</td>
-                        <td></td>
+                        <td>{{ $hindu }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>BUDDHA</td>
-                        <td></td>
+                        <td>{{ $buddha }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $JumlahPegawaiAktif }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
