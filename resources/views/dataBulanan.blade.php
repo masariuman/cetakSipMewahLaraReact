@@ -27,7 +27,7 @@
             padding: 3px 5px;
             }
             table.darkTable tbody td {
-            font-size: 13px;
+            font-size: 9px;
             color: #000000;
             }
             table.darkTable tr:nth-child(even) {
@@ -69,7 +69,7 @@
             padding: 3px 5px;
             }
             table.laporanTable tbody td {
-            font-size: 13px;
+            font-size: 9px;
             color: #000000;
             }
             /* table.laporanTable tr:nth-child(even) {
@@ -111,7 +111,7 @@
             padding: 3px 5px;
             }
             table.title tbody td {
-            font-size: 13px;
+            font-size: 9px;
             color: #000000;
             }
             table.title tr:nth-child(even) {
@@ -172,7 +172,7 @@
         </style>
     </head>
     <body>
-            <table style="width:100%;border-bottom:4px double;margin-top:-10px;">
+            {{-- <table style="width:100%;border-bottom:4px double;margin-top:-10px;">
                 <tr>
                     <td valign="bottom">
                         <img style="width:65px;" src="/mempawah.png" />
@@ -184,23 +184,23 @@
                         Telp. (0561) 691594 Fax. (0561) 691095 Kode Pos 78911</h3>
                     </td>
                 </tr>
-            </table>
-            <table class="title" style="margin-top:40px;margin-bottom:30px">
+            </table> --}}
+            <table class="title" style="margin-top:0px;margin-bottom:0px">
                 <thead>
                     <tr>
-                        <th style="font-size:35px;">DATA ASN KABUPATEN MEMPAWAH</th>
+                        <th style="font-size:20px;">DATA ASN KABUPATEN MEMPAWAH</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="font-size:35px;">PER TANGGAL {{ $today }}</td>
+                        <td style="font-size:20px;">PER TANGGAL {{ $today }}</td>
                     </tr>
                 </tbody>
             </table>
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="27" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">GOLONGAN</td>
+                        <td rowspan="27" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">GOLONGAN</td>
                         <td>GOLONGAN I/a</td>
                         <td style="width:10%;">{{ $gol1a }}</td>
                         <td style="width:10%;">ORANG</td>
@@ -340,7 +340,7 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="11" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">PENDIDIKAN</td>
+                        <td rowspan="11" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">PENDIDIKAN</td>
                         <td style="width:35%;">SD</td>
                         <td style="width:10%;">{{ $sd }}</td>
                         <td style="width:10%;">ORANG</td>
@@ -400,7 +400,7 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="3" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">JENIS KELAMIN</td>
+                        <td rowspan="3" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">JENIS KELAMIN</td>
                         <td>LAKI-LAKI</td>
                         <td style="width:10%;">{{ $laki }}</td>
                         <td style="width:10%;">ORANG</td>
@@ -420,7 +420,7 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="8" class="color_white bg_oldGreen" style="font-size: 45px; width:45%;">ESELONERING</td>
+                        <td rowspan="8" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">ESELONERING</td>
                         <td>ESELON II.a</td>
                         <td style="width:10%;">{{ $eselon2a }}</td>
                         <td style="width:10%;">ORANG</td>
@@ -465,7 +465,7 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="6" class="color_white bg_oldGreen" style="font-size: 55px; width:45%;">AGAMA</td>
+                        <td rowspan="6" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">AGAMA</td>
                         <td>ISLAM</td>
                         <td style="width:10%;">{{ $islam }}</td>
                         <td style="width:10%;">ORANG</td>
@@ -500,24 +500,24 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 40px; width:45%;">JENIS KEPEGAWAIAN</td>
+                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">JENIS KEPEGAWAIAN</td>
                         <td>STRUKTURAL</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $struktural }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>FUNGSIONAL</td>
-                        <td></td>
+                        <td>{{ $fungsional }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>PELAKSANA</td>
-                        <td></td>
+                        <td>{{ $pelaksana }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $jumlahJenisKepegawaian }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>
@@ -525,24 +525,24 @@
             <table class="laporanTable" style="" border="4">
                 <tbody>
                     <tr>
-                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 35px; width:45%;">KATEGORI KEPEGAWAIAN</td>
+                        <td rowspan="4" class="color_white bg_oldGreen" style="font-size: 20px; width:45%;">KATEGORI KEPEGAWAIAN</td>
                         <td>TENAGA TEKNIS</td>
-                        <td style="width:10%;"></td>
+                        <td style="width:10%;">{{ $tenagaTeknis }}</td>
                         <td style="width:10%;">ORANG</td>
                     </tr>
                     <tr>
                         <td>TENAGA KESEHATAN</td>
-                        <td></td>
+                        <td>{{ $tenagaKesehatan }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr>
                         <td>TENAGA GURU</td>
-                        <td></td>
+                        <td>{{ $tenagaGuru }}</td>
                         <td>ORANG</td>
                     </tr>
                     <tr class="bg_oldGreen">
                         <td class="color_white">JUMLAH</td>
-                        <td class="color_white"></td>
+                        <td class="color_white">{{ $jumlahKategoriKepegawaian }}</td>
                         <td class="color_white">ORANG</td>
                     </tr>
                 </tbody>

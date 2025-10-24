@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pegawai;
 use App\Models\RiwPendidikan;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class LaporanController extends Controller
 {
     private $helper;
@@ -97,9 +99,9 @@ class LaporanController extends Controller
         // $datasets = 1;
         $today = $this->helper->today();
         $data["today"] = $today;
-        return view('dataBulanan', $data);
-        // $data = Pdf::loadview('dataBulanan',$datasets);
-        // $data->setPaper('legal', 'potrait');
-        // return $data->stream($datasetPegawai["namaLengkap"].'.pdf');
+        // return view('dataBulanan', $data);
+        $datas = Pdf::loadview('dataBulanan',$data);
+        $datas->setPaper('legal', 'potrait');
+        return $datas->stream('test.pdf');
     }
 }
